@@ -14,6 +14,17 @@ public class Placeinfo {
     @SerializedName("y")
     String y;                     // Y 좌표값 혹은 latitude
 
+    @SerializedName("place_url")
+    String url;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public String getPlace_name() {
         return place_name;
     }

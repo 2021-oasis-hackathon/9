@@ -116,6 +116,7 @@ public class MapViewModel {
                 public void onResponse(Call<MapData> call, Response<MapData> response) {
                     if (response.isSuccessful()) {
                         if(tMapMarkerItems.size()==0) {
+                            Log.i("url",response.body().documents.get(0).getUrl());
                             MapPOIItem marker = new MapPOIItem();
                             marker.setItemName("10000");
                             marker.setTag(Count);

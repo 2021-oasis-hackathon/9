@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.Path;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -36,6 +37,7 @@ import com.hamseong.hohaeng.viewmodel.MapViewModel;
 import net.daum.mf.map.api.CalloutBalloonAdapter;
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
+import net.daum.mf.map.api.MapPolyline;
 import net.daum.mf.map.api.MapView;
 
 import java.util.ArrayList;
@@ -56,7 +58,7 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
     public int id = View.generateViewId();
 
     public static LayoutInflater inflater;//이 액티비티의 인플래터
-
+    MapView mapView;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONES_REQUEST_CODE = 100;
@@ -94,7 +96,7 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         inflater = getLayoutInflater();
 
 
-        MapView mapView = new MapView(this);//맴뷰 객체생성
+        mapView = new MapView(this);//맴뷰 객체생성
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.linearLayoutTmap);
         mapViewContainer.addView(mapView);//뷰에 추가
         mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());
@@ -234,13 +236,11 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
             findViewById(R.id.navi_info).setOnClickListener(new View.OnClickListener() {//다른 뷰 미완성이라 작동안함
                 @Override
                 public void onClick(View v) {
-                    if (getApplicationContext() == MapViewView.this) {
-                        Log.i("콘텍스트 겹침", "초기화합니다");
-                        finish();
-                        startActivity(new Intent(getApplicationContext(), MapView.class));
-                    } else {
-                        startActivity(new Intent(getApplicationContext(), MapView.class));
-                    }
+                    finish();
+                    Intent intent = new Intent(getApplicationContext(),MyView.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 }
             });
         }
@@ -256,6 +256,13 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
+        mapView.removeAllPOIItems();//모든 마커 제거
+        mapView.removeAllPolylines();
+    }
 }
 
 
