@@ -193,9 +193,8 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
             findViewById(R.id.navi_map).setOnClickListener(new View.OnClickListener() {//다른 뷰 미완성이라 작동안함
                 @Override
                 public void onClick(View v) {
-                    Log.i("콘텍스트 겹침", "초기화합니다");
                     finish();
-                    Intent intent = new Intent(getApplicationContext(), MapViewView.class);
+                    Intent intent = new Intent(getApplicationContext(), TMapViewView.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
@@ -206,7 +205,6 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
             findViewById(R.id.navi_main).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Log.i("콘텍스트 겹침", "초기화합니다");
                     mapViewContainer.removeViewAt(0);
                     finish();
                     Intent intent = new Intent(getApplicationContext(), MapViewView.class);
@@ -223,12 +221,12 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
                     if (getApplicationContext() == MapViewView.this) {
                         Log.i("콘텍스트 겹침", "초기화합니다");
                         finish();
-                        Intent intent = new Intent(getApplicationContext(), MapView.class);
+                        Intent intent = new Intent(getApplicationContext(), LikeView.class);
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                     } else {
-                        startActivity(new Intent(getApplicationContext(), MapView.class));
+                        startActivity(new Intent(getApplicationContext(), LikeView.class));
                     }
                 }
             });
