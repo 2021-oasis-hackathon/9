@@ -354,7 +354,7 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         if (findViewById(R.id.layout_info).getVisibility()==View.VISIBLE) {
             findViewById(R.id.layout_info).setVisibility(View.GONE);
             findViewById(R.id.layout_tag).setVisibility(View.VISIBLE);
-            findViewById(R.id.Tmap_imageB_now).setVisibility(View.VISIBLE);
+            findViewById(R.id.imageB_now).setVisibility(View.VISIBLE);
             findViewById(R.id.imageB_drawline).setVisibility(View.VISIBLE);
         } else if (mMapviewModel.isLine.getValue()) {
             mMapviewModel.isLine.setValue(false);

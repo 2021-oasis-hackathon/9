@@ -38,11 +38,13 @@
                 android:src="@drawable/d_image3" />
 
             <ImageView
+                android:id="@+id/selectview_recommend"
                 android:layout_width="324dp"
                 android:layout_height="196dp"
                 android:src="@drawable/d_image2" />
 
             <ImageView
+                android:id="@+id/selectview_other"
                 android:layout_width="324dp"
                 android:layout_height="196dp"
 
