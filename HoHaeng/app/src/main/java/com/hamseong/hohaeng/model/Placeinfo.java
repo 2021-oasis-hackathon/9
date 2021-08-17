@@ -9,13 +9,34 @@ public class Placeinfo {
     @SerializedName("category_name")
     String category_name;          // 카테고리 이름
 
+    @SerializedName("phone")
+    String phone;
+
+    @SerializedName("road_address_name")
+    String road_address;
     @SerializedName("x")
     String x;                      // X 좌표값 혹은 longitude
     @SerializedName("y")
     String y;                     // Y 좌표값 혹은 latitude
 
-    @SerializedName("place_url")
+    @SerializedName("url")
     String url;
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getRoad_address() {
+        return road_address;
+    }
+
+    public void setRoad_address(String road_address) {
+        this.road_address = road_address;
+    }
 
     public String getUrl() {
         return url;

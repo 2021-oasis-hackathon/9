@@ -30,6 +30,7 @@ import android.widget.TextView;
 import com.hamseong.hohaeng.APIKey;
 import com.hamseong.hohaeng.R;
 
+import com.hamseong.hohaeng.YeosuUrbanInfo;
 import com.hamseong.hohaeng.databinding.ActivityMapViewBinding;
 import com.hamseong.hohaeng.model.MapData;
 import com.hamseong.hohaeng.model.MapDataQuery;
@@ -82,6 +83,8 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
         findViewById(R.id.layout_tag).setVisibility(View.GONE);
         findViewById(R.id.layout_info).setVisibility(View.VISIBLE);
+        findViewById(R.id.imageB_now).setVisibility(View.GONE);
+        findViewById(R.id.imageB_drawline).setVisibility(View.GONE);
         mMapviewModel.onBalloonClick(mapView,mapPOIItem);
     }
 
@@ -109,6 +112,11 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         mapView.setPOIItemEventListener(this);
         mapView.setCustomCurrentLocationMarkerTrackingImage(R.drawable.cr_hohaen,new MapPOIItem.ImageOffset(18,18));//호행이 트래킹마커
 
+        Intent infomation = getIntent();
+        if(infomation.getExtras().getString("urban").equals("여수")){
+
+            mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(YeosuUrbanInfo.placeY, YeosuUrbanInfo.placeX),7,true);
+        }
 
         ImageView imageBDrawline = findViewById(R.id.imageB_drawline);//지도 좌우 버튼 동그랗게
         imageBDrawline.setBackground(new ShapeDrawable(new OvalShape()));
@@ -346,6 +354,8 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         if (findViewById(R.id.layout_info).getVisibility()==View.VISIBLE) {
             findViewById(R.id.layout_info).setVisibility(View.GONE);
             findViewById(R.id.layout_tag).setVisibility(View.VISIBLE);
+            findViewById(R.id.Tmap_imageB_now).setVisibility(View.VISIBLE);
+            findViewById(R.id.imageB_drawline).setVisibility(View.VISIBLE);
         } else if (mMapviewModel.isLine.getValue()) {
             mMapviewModel.isLine.setValue(false);
             mapView.removeAllPolylines();

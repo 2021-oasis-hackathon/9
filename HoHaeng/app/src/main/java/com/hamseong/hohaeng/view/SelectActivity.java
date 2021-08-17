@@ -30,9 +30,11 @@ public class SelectActivity extends AppCompatActivity {
         mywork.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent info = getIntent();
                 Intent intent = new Intent(
                         getApplicationContext(), // 현재 화면의 제어권자
                         MapViewView.class); // 다음 넘어갈 클래스 지정
+                intent.putExtra("urban", info.getExtras().getString("urban"));
                 intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
