@@ -151,7 +151,7 @@ public class MapViewModel {
 
                 @Override
                 public void onFailure(Call<MapData> call, Throwable t) {
-
+                    System.out.println("");
                 }
             });
         }

@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <queries>
+        <package android:name="com.skt.skaf.l001mtm091" />
+        //빨간색 티맵
+        <package android:name="com.skt.tmap.ku" />
+        //초록색 티맵
+    </queries>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -15,6 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HoHaeng"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
+        <activity android:name=".view.AlreadyMapView" />
         <activity android:name=".view.TMapViewView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.MyView">
-
-        </activity>
-        <activity android:name=".view.MapViewView"></activity>
+        <activity android:name=".view.MyView" />
+        <activity android:name=".view.MapViewView" />
         <activity android:name=".MainActivity" />
 
         <meta-data
