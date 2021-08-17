@@ -32,6 +32,9 @@ public class MapViewModel {
     public MutableLiveData<ArrayList<MapPOIItem>> mTMapmarker = new MutableLiveData<>();
     public MutableLiveData<Boolean> isDraw = new MutableLiveData<>();
     public ArrayList<MapPoint> alTMapPoint = new ArrayList<MapPoint>();
+    public MutableLiveData<Integer> TagOn = new MutableLiveData<>();
+    public MutableLiveData<Integer> subTagOn = new MutableLiveData<>();
+    //슬라이딩 뷰 정보에 대한 객체 생성 라이브 데이터로 인포가 켜졌다는 창 나오면 객체에서 정보 얻어와서 뷰 변경
     int Count=0;
     int NowCount=0;
 
@@ -98,10 +101,10 @@ public class MapViewModel {
 
 
     public void onBalloonClick(MapView mapView,MapPOIItem poiItem){
-        System.out.println("");
+
     }
 
-    public void onTagbuttonClick(){
+    public void onTagbuttonClick(String query, String cate){
         Count = 0;
         NowCount = 0;
         RetrofitClient retrofitClient = new RetrofitClient();
@@ -109,7 +112,7 @@ public class MapViewModel {
 
         for (MapPoint point : alTMapPoint) {
 
-            Call<MapData> call = retrofitClient.apiService.getPost(APIKey.KaKaoApi, "카페", "CE7", Double.toString(point.getMapPointGeoCoord().longitude),Double.toString(point.getMapPointGeoCoord().latitude), 4000, 1);
+            Call<MapData> call = retrofitClient.apiService.getPost(APIKey.KaKaoApi, query, cate, Double.toString(point.getMapPointGeoCoord().longitude),Double.toString(point.getMapPointGeoCoord().latitude), 4000, 1);
 
             call.enqueue(new Callback<MapData>() {
                 @Override
@@ -157,6 +160,9 @@ public class MapViewModel {
         }
     }
 
+    public void onSubTagButtonClick(){
+
+    }
 
 }
 

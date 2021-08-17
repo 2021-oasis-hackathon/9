@@ -29,6 +29,7 @@ import android.widget.TextView;
 import com.hamseong.hohaeng.APIKey;
 import com.hamseong.hohaeng.R;
 
+import com.hamseong.hohaeng.databinding.ActivityMapViewBinding;
 import com.hamseong.hohaeng.model.MapData;
 import com.hamseong.hohaeng.model.MapDataQuery;
 
@@ -59,7 +60,7 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
 
     public static LayoutInflater inflater;//이 액티비티의 인플래터
     MapView mapView;
-
+    ActivityMapViewBinding binding;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONES_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};//퍼미션
@@ -90,10 +91,12 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map_view);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_map_view);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,//전체화면
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        binding.setThisacti(this);
 
         inflater = getLayoutInflater();
 
@@ -122,6 +125,8 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
                     findViewById(R.id.layout_tag).setVisibility(View.VISIBLE);//태그 선택창 보이게
                 } else {
                     findViewById(R.id.layout_tag).setVisibility(View.GONE);//태그 선택창 안보이게
+                    mMapviewModel.subTagOn.setValue(0);
+                    mMapviewModel.TagOn.setValue(0);
                 }
             }
         });
@@ -151,6 +156,93 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
             }
         }); //선그릴때만 터치 활성화
 
+        mMapviewModel.TagOn.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                switch (integer){
+                    case 0:
+                        binding.viewActivity.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewCafe.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewHis.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewMus.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewRestaurant.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        break;
+                    case 1:
+                        binding.viewActivity.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewCafe.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewHis.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewMus.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewRestaurant.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        mMapviewModel.onTagbuttonClick("식당","FD6");
+                        break;
+                    case 2:
+                        binding.viewActivity.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewCafe.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        binding.viewHis.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewMus.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewRestaurant.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        mMapviewModel.onTagbuttonClick("카페","CE7");
+                        break;
+                    case 3:
+                        binding.viewActivity.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewCafe.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewHis.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        binding.viewMus.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewRestaurant.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        mMapviewModel.onTagbuttonClick("역사","CT1");
+                        break;
+                    case 4:
+                        binding.viewActivity.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        binding.viewCafe.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewHis.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewMus.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewRestaurant.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        mMapviewModel.onTagbuttonClick("테마파크","AT4");
+                        break;
+                    case 5:
+                        binding.viewActivity.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewCafe.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewHis.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewMus.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        binding.viewRestaurant.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        mMapviewModel.onTagbuttonClick("전시관","CT1");
+                        break;
+                }
+            }
+        });
+
+        mMapviewModel.subTagOn.observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer integer) {
+                switch (integer){
+                    case 0:
+                        binding.viewChild.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewLocal.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewPhoto.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        break;
+                    case 1:
+                        binding.viewChild.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        binding.viewLocal.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewPhoto.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        mMapviewModel.onSubTagButtonClick();
+                        break;
+                    case 2:
+                        binding.viewChild.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewLocal.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewPhoto.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        mMapviewModel.onSubTagButtonClick();
+                        break;
+                    case 3:
+                        binding.viewChild.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        binding.viewLocal.setBackground(getResources().getDrawable(R.drawable.tag_on,null));
+                        binding.viewPhoto.setBackground(getResources().getDrawable(R.drawable.tag_off,null));
+                        mMapviewModel.onSubTagButtonClick();
+                        break;
+
+                }
+            }
+        });
+
 
 
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);//레이아웃 생성
@@ -166,6 +258,7 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         imageBDrawline.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("확인",Integer.toString(mapView.getZoomLevel()));
                 mMapviewModel.onDrawButtonClick(mapView, view_touch);//뷰모델로 이벤트를 넘김
             }
         });
@@ -246,22 +339,40 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         }
 
 
-        findViewById(R.id.view_cafe).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mMapviewModel.onTagbuttonClick();
-            }
-        });//임시- 태그버튼 터치 리스너(후에 바인딩해서 onclick로 넘길듯)
-
-
     }
 
+    @Override
+    public void onBackPressed() {
+        if (findViewById(R.id.layout_info).getVisibility()==View.VISIBLE) {
+            findViewById(R.id.layout_info).setVisibility(View.GONE);
+            findViewById(R.id.layout_tag).setVisibility(View.VISIBLE);
+        } else if (mMapviewModel.isLine.getValue()) {
+            mMapviewModel.isLine.setValue(false);
+            mapView.removeAllPolylines();
+            mapView.removeAllPOIItems();
+            mMapviewModel.subTagOn.setValue(0);
+            mMapviewModel.TagOn.setValue(0);
+
+        } else {
+            super.onBackPressed();
+        }
+    }
     @Override
     protected void onPause() {
         super.onPause();
         mapView.setCurrentLocationTrackingMode(MapView.CurrentLocationTrackingMode.TrackingModeOff);
         mapView.removeAllPOIItems();//모든 마커 제거
         mapView.removeAllPolylines();
+    }
+
+    public void onTagClick(View view){
+        int i = Integer.parseInt((String)view.getTag());
+        mMapviewModel.TagOn.setValue(i);
+    }
+
+    public void onSubTagClick(View view){
+        int i = Integer.parseInt((String)view.getTag());
+        mMapviewModel.subTagOn.setValue(i);
     }
 }
 
