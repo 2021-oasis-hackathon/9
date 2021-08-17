@@ -78,7 +78,9 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
 
     @Override
     public void onCalloutBalloonOfPOIItemTouched(MapView mapView, MapPOIItem mapPOIItem, MapPOIItem.CalloutBalloonButtonType calloutBalloonButtonType) {
-        System.out.println("");
+        findViewById(R.id.layout_tag).setVisibility(View.GONE);
+        findViewById(R.id.layout_info).setVisibility(View.VISIBLE);
+        mMapviewModel.onBalloonClick(mapView,mapPOIItem);
     }
 
     @Override

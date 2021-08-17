@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.AlreadyMapView">
+
+
+    <include
+        android:id="@+id/include_nabi_map"
+        layout="@layout/navigation_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/navi_padding">
+
+            <RelativeLayout
+                android:id="@+id/linearLayoutAlreadymap"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="300dp"
+        android:layout_height="40dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="38dp"
+        android:layout_marginRight="30dp"
+        android:background="@drawable/search_back"
+        android:elevation="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </SearchView>
+
+    <ImageButton
+        android:id="@+id/imageB_now"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:elevation="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_sliding"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/button_now" />
+
+    <ImageButton
+        android:id="@+id/imageB_drawline"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:elevation="20dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/layout_sliding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/button_draw" />
+
+    <LinearLayout
+        android:id="@+id/layout_sliding"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/include_nabi_map"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:id="@+id/layout_tag"
+            android:layout_height="150dp"
+            android:visibility="gone"
+            android:elevation="20dp"
+            android:background="@drawable/mapview_frag_tag_back">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/view_restaurant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="식당"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+
+                    <TextView
+                        android:id="@+id/view_cafe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="카페"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+
+                    <TextView
+                        android:id="@+id/view4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="포토존"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/view5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="액티비티"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+
+                    <TextView
+                        android:id="@+id/view6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="전시관"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+
+                    <TextView
+                        android:id="@+id/view7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="나만 아는"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_weight="1">
+
+                    <TextView
+                        android:id="@+id/view8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="아이와"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+
+                    <TextView
+                        android:id="@+id/view9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="역사"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+
+                    <TextView
+                        android:id="@+id/view10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:elevation="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:text="현지인 추천"
+                        android:textSize="15dp"
+                        android:textColor="@color/black"
+                        android:layout_weight="1"
+                        android:background="@drawable/tag_off"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:id="@+id/layout_info"
+            android:layout_height="400dp"
+            android:visibility="gone"
+            android:elevation="20dp"
+            android:background="@drawable/map_info">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+    </LinearLayout>
+
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+

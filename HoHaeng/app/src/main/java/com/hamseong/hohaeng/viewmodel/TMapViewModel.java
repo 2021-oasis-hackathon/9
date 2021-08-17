@@ -39,8 +39,7 @@ public class TMapViewModel {
                     TMapPolyLine tMapPolyLine = null;
                     try {
                         tMapPolyLine = new TMapData().findPathData(point.first, point.second);
-                        tMapPolyLine.setLineColor(Color.BLUE);
-                        tMapPolyLine.setLineWidth(2);
+                        tMapPolyLine.setLineColor(Color.parseColor("#61CAFF"));
 
                     } catch (Exception e) {
                         e.printStackTrace();
