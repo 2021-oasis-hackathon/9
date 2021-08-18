@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HoHaeng"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.CourseResister"></activity>
+<!--        <activity android:name=".view.CourseResister"></activity>-->
         <activity android:name=".view.MpSpecialties" />
         <activity android:name=".view.GjSpecialties" />
         <activity android:name=".view.Cal" />
@@ -43,6 +43,8 @@
         <activity android:name=".view.HomeActivity" />
         <activity android:name=".view.SpecialtiesActivity" />
         <activity android:name=".view.SelectActivity" />
+        <activity android:name=".view.LoginActivity" />
+        <activity android:name=".view.RegisterActivity" />
 
         <meta-data
             android:name="com.kakao.sdk.AppKey"

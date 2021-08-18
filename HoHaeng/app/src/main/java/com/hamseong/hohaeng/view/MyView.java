@@ -205,8 +205,6 @@ public class MyView extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent); // 다음 화면으로 넘어간다
-
-
                 }
             });
             View db_4 = (View) findViewById(R.id.bb_4) ;
@@ -222,7 +220,19 @@ public class MyView extends AppCompatActivity {
 
                 }
             });
+            View myview_photo = (View) findViewById(R.id.myview_photo) ;
+            myview_photo.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(
+                            getApplicationContext(), // 현재 화면의 제어권자
+                            LoginActivity.class); // 다음 넘어갈 클래스 지정
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent); // 다음 화면으로 넘어간다
 
+                }
+            });
         }
 
     }
