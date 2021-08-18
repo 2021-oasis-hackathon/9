@@ -45,7 +45,6 @@
                 android:layout_height="wrap_content"
                 app:connectedDayIconPosition="top"
                 app:currentDayIconRes="@drawable/img_"
-                app:currentDaySelectedIconRes="@drawable/plus"
                 app:currentDayTextColor="#61CAFF"
                 app:firstDayOfTheWeek="sunday"
                 app:orientation="horizontal"

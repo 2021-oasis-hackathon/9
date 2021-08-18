@@ -2,64 +2,38 @@ package com.hamseong.hohaeng.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.hamseong.hohaeng.R;
-import com.hamseong.hohaeng.RecommendInfo;
-import com.hamseong.hohaeng.databinding.ActivityCalBinding;
+import com.hamseong.hohaeng.databinding.ActivityCourseRegisterBinding;
+import com.hamseong.hohaeng.model.AllCourseInfo;
+import com.hamseong.hohaeng.model.AllPlaceInfo;
+import com.hamseong.hohaeng.viewmodel.CourseRegisterViewModel;
 
-import java.util.Calendar;
+import java.util.ArrayList;
 
-public class Cal extends AppCompatActivity {
-    ActivityCalBinding binding;
-    MutableLiveData<Integer> childnum = new MutableLiveData<>();
-    MutableLiveData<Integer> peoplenum = new MutableLiveData<>();
+public class CourseRegister extends AppCompatActivity {
+    CourseRegisterViewModel courseRegisterViewModel = new CourseRegisterViewModel();
+    ActivityCourseRegisterBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_cal);
-        binding.setActi(this);
-        childnum.setValue(0);
-        peoplenum.setValue(0);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_course_register);
+
         Intent info = getIntent();
 
-        childnum.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                binding.childCount.setText(Integer.toString(integer));
-            }
-        });
-
-
-        peoplenum.observe(this, new Observer<Integer>() {
-            @Override
-            public void onChanged(Integer integer) {
-                binding.peopleCount.setText(Integer.toString(integer));
-            }
-        });
-
-
-        binding.imageView7.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(),MapViewView.class);
-                intent.putExtra("smallpeople",childnum.getValue());
-                intent.putExtra("people",peoplenum.getValue());
-                intent.putExtra("urban", info.getExtras().getString("urban"));
-                Calendar calendar =  binding.calendarView.getSelectedDates().get(0);
-                intent.putExtra("start",Integer.toString(calendar.MONTH+1)+"월"+Integer.toString(calendar.DAY_OF_MONTH)+"일");
-                calendar =  binding.calendarView.getSelectedDates().get(binding.calendarView.getSelectedDates().size()-1);
-                intent.putExtra("end",Integer.toString(calendar.MONTH+1)+"월"+Integer.toString(calendar.DAY_OF_MONTH)+"일");
-                startActivity(intent);
+                AllCourseInfo allCourseInfo = (AllCourseInfo) info.getSerializableExtra("course");
+                courseRegisterViewModel.onRegisterButtonClick((String)binding.editTextTextTitle.getText().toString(),binding.editTextTextStar.getText().toString(),binding.editTextTextContent.getText().toString(),allCourseInfo);
             }
         });
+
         View db_1 = (View) findViewById(R.id.bb_1) ;
         db_1.setOnClickListener(new Button.OnClickListener() {
             @Override
@@ -113,28 +87,4 @@ public class Cal extends AppCompatActivity {
         });
 
     }
-    public void minusClick(View view) {
-        switch (Integer.parseInt((String)view.getTag())){
-            case 8:
-                childnum.setValue(childnum.getValue()-1);
-                break;
-            case 9:
-                peoplenum.setValue(peoplenum.getValue()-1);
-                break;
-
-        }
-
-    }
-    public void plusClick(View view){
-        switch (Integer.parseInt((String)view.getTag())){
-            case 8:
-                childnum.setValue(childnum.getValue()+1);
-                break;
-            case 9:
-                peoplenum.setValue(peoplenum.getValue()+1);
-                break;
-
-        }
-    }
-
 }

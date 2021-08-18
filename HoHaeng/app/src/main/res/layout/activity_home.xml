@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -111,6 +112,7 @@
                             android:src="@drawable/b_image4" />
 
                         <ImageView
+                            android:id="@+id/gj_button"
                             android:layout_width="150dp"
                             android:layout_height="165dp"
                             android:layout_marginLeft="10dp"
@@ -142,6 +144,7 @@
                     android:rowCount="4">
 
                     <ImageView
+                        android:id="@+id/mp_button"
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginLeft="10dp"
@@ -226,8 +229,13 @@
                         android:src="@drawable/b_image8" />
 
                 </GridLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp">
 
+                </View>
             </GridLayout>
+
 
         </ScrollView>
 
@@ -240,3 +248,4 @@
     </include>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

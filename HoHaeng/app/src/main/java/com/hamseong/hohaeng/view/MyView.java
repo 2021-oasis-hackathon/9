@@ -2,6 +2,7 @@ package com.hamseong.hohaeng.view;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,11 +14,16 @@ import android.widget.ImageView;
 
 import com.hamseong.hohaeng.R;
 import com.hamseong.hohaeng.databinding.ActivityMyViewBinding;
+import com.hamseong.hohaeng.model.AllCourseInfo;
+import com.hamseong.hohaeng.viewmodel.MyViewModel;
 
 import net.daum.mf.map.api.MapView;
 
+import java.util.ArrayList;
+
 public class MyView extends AppCompatActivity {
     ActivityMyViewBinding binding;
+    MyViewModel myViewModel = new MyViewModel();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +32,15 @@ public class MyView extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,//전체화면
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        myViewModel.Courseinfo.observe(this, new Observer<ArrayList<AllCourseInfo>>() {
+            @Override
+            public void onChanged(ArrayList<AllCourseInfo> allCourseInfos) {
+                
+            }
+        });
+
+
 
         binding.myviewJNotsel.setOnClickListener(new View.OnClickListener() {
             @Override

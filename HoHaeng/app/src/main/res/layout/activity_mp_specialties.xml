@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="horizontal"
-    tools:context=".view.SpecialtiesActivity">
+    tools:context=".view.MpSpecialties">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -45,7 +43,7 @@
                             android:layout_x="124dp"
                             android:layout_y="256dp"
                             android:scaleType="fitXY"
-                            android:src="@drawable/c_image1" />
+                            android:src="@drawable/mp_title" />
 
 
                         <ImageView
@@ -73,7 +71,7 @@
                             android:layout_height="41dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="20dp"
-                            android:src="@drawable/c_image6" />
+                            android:src="@drawable/mp_spe_text" />
                     </LinearLayout>
 
                     <HorizontalScrollView
@@ -93,25 +91,25 @@
                                 android:layout_width="80dp"
                                 android:layout_height="90dp"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/c_image2" />
+                                android:src="@drawable/mp_spe1" />
 
                             <ImageView
                                 android:layout_width="80dp"
                                 android:layout_height="90dp"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/c_image3" />
+                                android:src="@drawable/mp_spe2" />
 
                             <ImageView
                                 android:layout_width="80dp"
                                 android:layout_height="90dp"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/c_image4" />
+                                android:src="@drawable/mp_spe3" />
 
                             <ImageView
                                 android:layout_width="80dp"
                                 android:layout_height="90dp"
                                 android:layout_marginLeft="10dp"
-                                android:src="@drawable/c_image5" />
+                                android:src="@drawable/mp_spe4" />
 
 
                         </LinearLayout>
@@ -127,7 +125,7 @@
                             android:layout_width="336dp"
                             android:layout_height="41dp"
                             android:layout_marginLeft="10dp"
-                            android:src="@drawable/c_image7" />
+                            android:src="@drawable/mp_fest_text" />
                     </LinearLayout>
 
                     <FrameLayout
@@ -148,21 +146,21 @@
                                 android:layout_height="150dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:src="@drawable/c_image9" />
+                                android:src="@drawable/mp_fest1" />
 
                             <ImageView
                                 android:layout_width="156dp"
                                 android:layout_height="150dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:src="@drawable/c_image10" />
+                                android:src="@drawable/mp_fest2" />
 
                             <ImageView
                                 android:layout_width="156dp"
                                 android:layout_height="150dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:src="@drawable/c_image11" />
+                                android:src="@drawable/mp_fest3" />
 
                             <ImageView
 
@@ -170,7 +168,7 @@
                                 android:layout_height="150dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
-                                android:src="@drawable/c_image12" />
+                                android:src="@drawable/mp_fest4" />
 
 
                         </GridLayout>
