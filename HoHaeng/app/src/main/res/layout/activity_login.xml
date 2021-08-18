@@ -51,7 +51,7 @@
 
 
             <EditText
-                android:id="@+id/et_pass"
+                android:id="@+id/et_pass1"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
                 android:paddingLeft="20dp"
@@ -63,7 +63,7 @@
                 android:password="true" />
 
             <ImageView
-                android:id="@+id/e_login"
+                android:id="@+id/e_login1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="50dp"
