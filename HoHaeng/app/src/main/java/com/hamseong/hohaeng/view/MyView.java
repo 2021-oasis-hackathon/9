@@ -49,7 +49,7 @@ public class MyView extends AppCompatActivity {
 
         //네비게이션 바 클릭 리스너
         {
-            ImageView db_1 = (ImageView) findViewById(R.id.bb_1) ;
+            View db_1 = (View) findViewById(R.id.bb_1) ;
             db_1.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -61,7 +61,7 @@ public class MyView extends AppCompatActivity {
                     startActivity(intent); // 다음 화면으로 넘어간다
                 }
             });
-            ImageView db_2 = (ImageView) findViewById(R.id.bb_2) ;
+            View db_2 = (View) findViewById(R.id.bb_2) ;
             db_2.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -73,7 +73,7 @@ public class MyView extends AppCompatActivity {
 //                startActivity(intent); // 다음 화면으로 넘어간다
                 }
             });
-            ImageView db_3 = (ImageView) findViewById(R.id.bb_3) ;
+            View db_3 = (View) findViewById(R.id.bb_3) ;
             db_3.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -87,7 +87,7 @@ public class MyView extends AppCompatActivity {
 
                 }
             });
-            ImageView db_4 = (ImageView) findViewById(R.id.bb_4) ;
+            View db_4 = (View) findViewById(R.id.bb_4) ;
             db_4.setOnClickListener(new Button.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -100,6 +100,7 @@ public class MyView extends AppCompatActivity {
 
                 }
             });
+
         }
 
     }

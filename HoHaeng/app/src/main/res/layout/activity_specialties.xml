@@ -11,6 +11,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <GridLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -20,8 +21,10 @@
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="680dp"
-                android:scrollbars="none"
-                android:orientation="vertical">
+                android:layout_row="0"
+                android:layout_column="0"
+                android:orientation="vertical"
+                android:scrollbars="none">
 
                 <GridLayout
                     android:layout_width="match_parent"
@@ -32,8 +35,8 @@
                     <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="260dp"
-                        android:orientation="horizontal"
                         android:columnCount="1"
+                        android:orientation="horizontal"
                         android:rowCount="2">
 
                         <ImageView
@@ -45,15 +48,14 @@
                             android:src="@drawable/c_image1" />
 
 
-
                         <ImageView
                             android:layout_width="100dp"
                             android:layout_height="100dp"
+                            android:layout_marginLeft="280dp"
+                            android:layout_marginTop="-130dp"
                             android:layout_x="124dp"
                             android:layout_y="256dp"
                             android:scaleType="fitXY"
-                            android:layout_marginLeft="280dp"
-                            android:layout_marginTop="-130dp"
                             android:src="@drawable/c_image8" />
 
                     </GridLayout>
@@ -61,25 +63,26 @@
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        android:background="@drawable/layou_backgrounts"
                         android:layout_marginTop="-30dp"
+                        android:background="@drawable/layou_backgrounts"
                         android:orientation="horizontal">
 
                         <ImageView
                             android:id="@+id/b_image1"
-                            android:layout_marginTop="20dp"
                             android:layout_width="336dp"
                             android:layout_height="41dp"
                             android:layout_marginLeft="10dp"
+                            android:layout_marginTop="20dp"
                             android:src="@drawable/c_image6" />
                     </LinearLayout>
 
                     <HorizontalScrollView
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
-                        android:scrollbars="none"
                         android:layout_x="0dp"
-                        android:layout_y="255dp">
+                        android:layout_y="255dp"
+                        android:scrollbars="none">
+
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
@@ -111,7 +114,6 @@
                                 android:src="@drawable/c_image5" />
 
 
-
                         </LinearLayout>
                     </HorizontalScrollView>
 
@@ -137,8 +139,8 @@
                         <GridLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:orientation="horizontal"
                             android:columnCount="2"
+                            android:orientation="horizontal"
                             android:rowCount="2">
 
                             <ImageView
@@ -154,12 +156,14 @@
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:src="@drawable/c_image10" />
+
                             <ImageView
                                 android:layout_width="156dp"
                                 android:layout_height="150dp"
                                 android:layout_marginLeft="10dp"
                                 android:layout_marginBottom="10dp"
                                 android:src="@drawable/c_image11" />
+
                             <ImageView
 
                                 android:layout_width="156dp"
@@ -174,25 +178,25 @@
 
                 </GridLayout>
             </ScrollView>
-            <include
-                layout="@layout/navigation_bar">
-
-            </include>
 
         </GridLayout>
-        <ImageView
-            android:id="@+id/co"
-            android:layout_width="58dp"
-            android:layout_height="58dp"
-            android:layout_marginTop="610dp"
-            android:layout_marginLeft="290dp"
-            android:src="@drawable/c_image13" />
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="570dp"
-            android:layout_marginLeft="210dp"
-            android:src="@drawable/c_image14" />
+
     </FrameLayout>
+
+    <include
+        layout="@layout/navigation_bar"
+        tools:layout_editor_absoluteY="680dp">
+
+    </include>
+
+    <ImageView
+        android:id="@+id/co"
+        android:layout_width="58dp"
+        android:layout_height="58dp"
+        android:src="@drawable/c_image13"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="70dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

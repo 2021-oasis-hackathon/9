@@ -22,9 +22,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HoHaeng"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.RecommendSel"></activity>
+        <activity android:name=".view.Cal">
+
+        </activity>
+        <activity android:name=".view.RecommendSel" />
         <activity android:name=".view.AlreadyMapView" />
-        <activity android:name=".view.TMapViewView"></activity>
+        <activity android:name=".view.TMapViewView" />
         <activity android:name=".view.MyView" />
         <activity android:name=".view.MapViewView" />
         <activity

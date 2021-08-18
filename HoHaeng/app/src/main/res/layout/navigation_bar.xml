@@ -1,58 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
-
-
-<GridLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@drawable/layout_background"
-    android:columnCount="4"
-    android:orientation="horizontal"
-    android:rowCount="1">
 
-    <ImageView
-        android:id="@+id/bb_1"
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/navi_padding"
+        android:background="@drawable/navi_circle"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <View
+            android:id="@+id/bb_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+        </View>
+
+        <View
+            android:id="@+id/bb_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+        </View>
+
+        <View
+            android:id="@+id/bb_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+
+        </View>
+
+        <View
+            android:id="@+id/bb_4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"></View>
+
+    </LinearLayout>
+
+    <View
         android:layout_width="30dp"
         android:layout_height="30dp"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/navi_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginBottom="20dp">
 
-        android:src="@drawable/b_image20" />
+    </View>
 
-    <ImageView
-        android:id="@+id/bb_2"
+    <View
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/navi_like"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-        android:src="@drawable/b_image21" />
+        android:layout_marginLeft="120dp"
+        android:layout_marginBottom="20dp">
 
-    <ImageView
-        android:id="@+id/bb_3"
+    </View>
+
+    <View
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/navi_map"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
 
-        android:src="@drawable/b_image22" />
+        android:layout_marginLeft="210dp"
+        android:layout_marginBottom="20dp">
 
-    <ImageView
-        android:id="@+id/bb_4"
+    </View>
+
+    <View
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginTop="38dp"
+        android:background="@drawable/navi_my"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginLeft="300dp"
+        android:layout_marginBottom="20dp">
 
-        android:src="@drawable/b_image23" />
+    </View>
 
-</GridLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

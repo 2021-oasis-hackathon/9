@@ -25,10 +25,12 @@
             android:layout_height="680dp"
             android:orientation="vertical"
             android:scrollbars="none">
+
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
+
                 <GridLayout
                     android:layout_width="match_parent"
                     android:layout_height="260dp"
@@ -43,6 +45,7 @@
                         android:layout_y="256dp"
                         android:scaleType="fitXY"
                         android:src="@drawable/b_image1" />
+
                     <EditText
                         android:layout_width="320dp"
                         android:layout_height="50dp"
@@ -228,9 +231,12 @@
 
         </ScrollView>
 
-        <include layout="@layout/navigation_bar">
-
-        </include>
     </GridLayout>
+
+    <include
+        layout="@layout/navigation_bar"
+        tools:layout_editor_absoluteY="680dp">
+
+    </include>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
