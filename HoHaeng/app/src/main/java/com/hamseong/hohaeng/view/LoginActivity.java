@@ -19,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText et_id, et_pass;
+    private EditText et_id, et_pass1;
     private ImageView btn_login, btn_register;
 
     @Override
@@ -28,9 +28,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         et_id = findViewById(R.id.et_id);
-        et_pass = findViewById(R.id.et_pw);
+        et_pass1 = findViewById(R.id.et_pass1);
 
-        btn_login = findViewById(R.id.e_login);
+        btn_login = findViewById(R.id.e_login1);
         btn_register = findViewById(R.id.e_reg);
 
         // 회원가입 버튼을 클릭 시 수행
@@ -47,7 +47,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // EditText에 현재 입력되어있는 값을 get(가져온다)해온다.
                 String id = et_id.getText().toString();
-                String pw = et_pass.getText().toString();
+                String pw = et_pass1.getText().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -57,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                             System.out.println("hongchul" + response);
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
-                            Toast.makeText(getApplicationContext(),"wjqthr.",Toast.LENGTH_SHORT).show();
                             if (success) { // 로그인에 성공한 경우
                                 String id = jsonObject.getString("id");
                                 String pw = jsonObject.getString("pw");
