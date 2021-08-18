@@ -1,8 +1,9 @@
 package com.hamseong.hohaeng.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AllCourseInfo {
+public class AllCourseInfo implements Serializable {
     private ArrayList<AllPlaceInfo> allPlaceInfos;
     private int endYear;
     private int endMonth;

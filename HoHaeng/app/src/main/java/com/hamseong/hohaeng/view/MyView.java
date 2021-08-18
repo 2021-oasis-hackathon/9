@@ -1,21 +1,28 @@
 package com.hamseong.hohaeng.view;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hamseong.hohaeng.R;
 import com.hamseong.hohaeng.databinding.ActivityMyViewBinding;
 import com.hamseong.hohaeng.model.AllCourseInfo;
+import com.hamseong.hohaeng.model.AllPlaceInfo;
 import com.hamseong.hohaeng.viewmodel.MyViewModel;
+import com.skt.Tmap.TmapAuthentication;
 
 import net.daum.mf.map.api.MapView;
 
@@ -34,13 +41,113 @@ public class MyView extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         myViewModel.Courseinfo.observe(this, new Observer<ArrayList<AllCourseInfo>>() {
+            int dpbase = (int) getResources().getDimension(R.dimen.base);
+            int Count =0;
+
             @Override
+
             public void onChanged(ArrayList<AllCourseInfo> allCourseInfos) {
-                
+                for(AllCourseInfo allCourseInfo : allCourseInfos) {
+                    LinearLayout base = new LinearLayout(MyView.this);
+                    base.setBackgroundResource(R.drawable.myview_box);
+                    base.setPadding(dpbase*10,dpbase*5,dpbase*10,dpbase*5);
+
+                    LinearLayout texts = new LinearLayout(MyView.this);
+                    texts.setOrientation(LinearLayout.VERTICAL);
+                    texts.setPadding(dpbase*10,0,0,0);
+
+                    TextView urban = new TextView(MyView.this);
+                    urban.setTextSize(dpbase * 5);
+                    urban.setTextColor(Color.BLACK);
+                    urban.setGravity(Gravity.CENTER_VERTICAL);
+                    urban.setText(allCourseInfo.getLoaction());
+
+                    TextView day = new TextView(MyView.this);
+                    day.setText(allCourseInfo.getStartYear()+"."+allCourseInfo.getStartMonth()+"."+allCourseInfo.getStartDay()+"~"+
+                            allCourseInfo.getEndYear()+"."+allCourseInfo.getEndMonth()+"."+allCourseInfo.getStartDay());
+                    day.setTextColor(Color.BLUE);
+                    day.setTextSize(dpbase*4);
+                    day.setGravity(Gravity.CENTER_VERTICAL);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpbase*200,dpbase*50);
+                    texts.addView(urban,params);
+                    params = new LinearLayout.LayoutParams(dpbase*200,dpbase*30);
+                    texts.addView(day,params);
+                    params = new LinearLayout.LayoutParams(dpbase*200, LinearLayout.LayoutParams.MATCH_PARENT);
+                    base.addView(texts,params);
+                    ImageView sel = new ImageView(MyView.this);
+                    sel.setPadding(0,dpbase*30,0,0);
+                    sel.setImageResource(R.drawable.myview_button_sel);
+                    sel.setTag(Count);
+                    base.addView(sel);
+                    Count++;
+                    binding.scrollNow.addView(base);
+
+                    sel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //sqlite 등록
+                        }
+                    });
+
+                }
             }
         });
 
+        myViewModel.oldCourseinfo.observe(this, new Observer<ArrayList<AllCourseInfo>>() {
+            int dpbase = (int) getResources().getDimension(R.dimen.base);
+            int Count =0;
+            @Override
+            public void onChanged(ArrayList<AllCourseInfo> allCourseInfos) {
+                for(AllCourseInfo allCourseInfo : allCourseInfos) {
+                    LinearLayout base = new LinearLayout(MyView.this);
+                    base.setBackgroundResource(R.drawable.myview_box);
+                    base.setPadding(dpbase * 10, dpbase * 5, dpbase * 10, dpbase * 5);
 
+                    LinearLayout texts = new LinearLayout(MyView.this);
+                    texts.setOrientation(LinearLayout.VERTICAL);
+                    texts.setPadding(dpbase * 10, 0, 0, 0);
+
+                    TextView urban = new TextView(MyView.this);
+                    urban.setTextSize(dpbase * 5);
+                    urban.setTextColor(Color.BLACK);
+                    urban.setGravity(Gravity.CENTER_VERTICAL);
+                    urban.setText(allCourseInfo.getLoaction());
+
+                    TextView day = new TextView(MyView.this);
+                    day.setText(allCourseInfo.getStartYear() + "." + allCourseInfo.getStartMonth() + "." + allCourseInfo.getStartDay() + "~" +
+                            allCourseInfo.getEndYear() + "." + allCourseInfo.getEndMonth() + "." + allCourseInfo.getStartDay());
+                    day.setTextColor(Color.BLUE);
+                    day.setTextSize(dpbase * 4);
+                    day.setGravity(Gravity.CENTER_VERTICAL);
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(dpbase * 200, dpbase * 50);
+                    texts.addView(urban, params);
+                    params = new LinearLayout.LayoutParams(dpbase * 200, dpbase * 30);
+                    texts.addView(day, params);
+                    params = new LinearLayout.LayoutParams(dpbase * 200, LinearLayout.LayoutParams.MATCH_PARENT);
+                    base.addView(texts, params);
+                    ImageView sel = new ImageView(MyView.this);
+                    sel.setPadding(0, dpbase * 30, 0, 0);
+                    sel.setImageResource(R.drawable.myview_button_sel);
+                    sel.setTag(Count);
+                    base.addView(sel);
+                    Count++;
+                    binding.scrollOld.addView(base);
+
+                    sel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(MyView.this,CourseRegister.class);
+                            intent.putExtra("course",allCourseInfos.get((int)v.getTag()));
+                            startActivity(intent);
+                        }
+                    });
+                }
+            }
+        });
+
+        ArrayList<AllCourseInfo> allCourseInfos = new ArrayList<>();
+        allCourseInfos.add(new AllCourseInfo(null,2021,9,27,2021,8,16,"광주"));
+        myViewModel.Courseinfo.setValue(allCourseInfos);
 
         binding.myviewJNotsel.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -38,10 +38,14 @@
                 app:srcCompat="@drawable/map_this_text" />
 
             <ScrollView
+
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
+                android:layout_height="200dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp">
 
                 <LinearLayout
+                    android:id="@+id/scroll_now"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
@@ -140,10 +144,12 @@
                 app:srcCompat="@drawable/mapview_last_text" />
 
             <ScrollView
+
                 android:layout_width="match_parent"
                 android:layout_height="200dp">
 
                 <LinearLayout
+                    android:id="@+id/scroll_old"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" >
