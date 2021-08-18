@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +22,7 @@ import org.json.JSONObject;
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText et_name, et_id, et_pw, et_address, et_age, et_sex;
-    private Button btn_register;
+    private ImageView btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) { // 액티비티 시작시 처음으로 실행되는 생명주기!
@@ -38,7 +39,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
         // 회원가입 버튼 클릭 시 수행
-        btn_register = findViewById(R.id.btn_register);
+        btn_register = findViewById(R.id.e_reg);
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
