@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-
+<layout>
+    <data>
+        <variable
+            name="thisacti"
+            type="com.hamseong.hohaeng.view.MapViewView" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -122,9 +127,12 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:text="식당"
+
                             android:textSize="15dp"
                             android:textColor="@color/black"
                             android:layout_weight="1"
+                            android:tag="1"
+                            android:onClick="@{thisacti::onTagClick}"
                             android:background="@drawable/tag_off"/>
 
                         <TextView
@@ -140,11 +148,13 @@
                             android:text="카페"
                             android:textSize="15dp"
                             android:textColor="@color/black"
+                            android:tag="2"
+                            android:onClick="@{thisacti::onTagClick}"
                             android:layout_weight="1"
                             android:background="@drawable/tag_off"/>
 
                         <TextView
-                            android:id="@+id/view4"
+                            android:id="@+id/view_his"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="5dp"
@@ -153,7 +163,9 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="포토존"
+                            android:text="역사"
+                            android:tag="3"
+                            android:onClick="@{thisacti::onTagClick}"
                             android:textSize="15dp"
                             android:textColor="@color/black"
                             android:layout_weight="1"
@@ -166,10 +178,12 @@
                         android:layout_weight="1">
 
                         <TextView
-                            android:id="@+id/view5"
+                            android:id="@+id/view_activity"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="5dp"
+                            android:tag="4"
+                            android:onClick="@{thisacti::onTagClick}"
                             android:layout_marginBottom="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginLeft="20dp"
@@ -182,32 +196,18 @@
                             android:background="@drawable/tag_off"/>
 
                         <TextView
-                            android:id="@+id/view6"
+                            android:id="@+id/view_mus"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="5dp"
+                            android:tag="5"
+                            android:onClick="@{thisacti::onTagClick}"
                             android:layout_marginBottom="10dp"
                             android:layout_marginRight="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:text="전시관"
-                            android:textSize="15dp"
-                            android:textColor="@color/black"
-                            android:layout_weight="1"
-                            android:background="@drawable/tag_off"/>
-
-                        <TextView
-                            android:id="@+id/view7"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:elevation="5dp"
-                            android:layout_marginBottom="10dp"
-                            android:layout_marginRight="20dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="10dp"
-                            android:gravity="center"
-                            android:text="나만 아는"
                             android:textSize="15dp"
                             android:textColor="@color/black"
                             android:layout_weight="1"
@@ -220,7 +220,7 @@
                         android:layout_weight="1">
 
                         <TextView
-                            android:id="@+id/view8"
+                            android:id="@+id/view_child"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="5dp"
@@ -230,13 +230,15 @@
                             android:layout_marginTop="10dp"
                             android:gravity="center"
                             android:text="아이와"
+                            android:tag="1"
+                            android:onClick="@{thisacti::onSubTagClick}"
                             android:textSize="15dp"
                             android:textColor="@color/black"
                             android:layout_weight="1"
                             android:background="@drawable/tag_off"/>
 
                         <TextView
-                            android:id="@+id/view9"
+                            android:id="@+id/view_photo"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="5dp"
@@ -245,14 +247,16 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:gravity="center"
-                            android:text="역사"
+                            android:tag="2"
+                            android:onClick="@{thisacti::onSubTagClick}"
+                            android:text="사진찍기좋은"
                             android:textSize="15dp"
                             android:textColor="@color/black"
                             android:layout_weight="1"
                             android:background="@drawable/tag_off"/>
 
                         <TextView
-                            android:id="@+id/view10"
+                            android:id="@+id/view_local"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:elevation="5dp"
@@ -260,6 +264,8 @@
                             android:layout_marginRight="20dp"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
+                            android:tag="3"
+                            android:onClick="@{thisacti::onSubTagClick}"
                             android:gravity="center"
                             android:text="현지인 추천"
                             android:textSize="15dp"
@@ -274,17 +280,153 @@
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
                 android:id="@+id/layout_info"
-                android:layout_height="400dp"
                 android:visibility="gone"
-                android:elevation="20dp"
-                android:background="@drawable/map_info">
+                android:layout_height="500dp"
 
-                <LinearLayout
+                android:elevation="20dp">
+                <com.sothree.slidinguppanel.SlidingUpPanelLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:gravity="bottom"
+                    app:umanoDragView="@id/sliding_map_linear"
+                    app:umanoPanelHeight="90dp"
+                    app:umanoOverlay="false"
+                    app:umanoParallaxOffset="200dp"
+                    android:id="@+id/sliding_drawer">
 
-                </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:background="@drawable/map_info"
+                            android:id="@+id/sliding_map_linear"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginRight="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:layout_marginTop="30dp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:orientation="vertical" >
+
+                                    <LinearLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:orientation="horizontal">
+
+                                        <TextView
+                                            android:id="@+id/info_name"
+                                            android:layout_width="180dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:gravity="center_vertical"
+                                            android:text="신미락횟집"
+                                            android:textStyle="bold"
+                                            android:textColor="@color/black"
+                                            android:textSize="30dp" />
+
+                                        <ImageView
+                                            android:id="@+id/info_like"
+                                            android:layout_width="20dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            app:srcCompat="@drawable/notlike" />
+
+                                        <ImageView
+                                            android:id="@+id/info_plus"
+                                            android:layout_width="10dp"
+                                            android:layout_height="wrap_content"
+                                            android:layout_weight="1"
+                                            app:srcCompat="@drawable/plus" />
+
+                                    </LinearLayout>
+
+                                    <TextView
+                                        android:id="@+id/info_star"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="★ 4.43"
+                                        android:textSize="24dp"
+                                        android:textColor="@color/black"/>
+
+                                    <TextView
+                                        android:id="@+id/info_hash"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="70dp"
+                                        android:text="#식당 #카페"
+                                        android:textSize="24dp"
+                                        android:gravity="center"
+                                        android:textColor="#0080FF"/>
+
+                                    <ImageView
+                                        android:id="@+id/imageView6"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        app:srcCompat="@drawable/myview_line" />
+
+                                    <TextView
+                                        android:id="@+id/info_value"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="80dp"
+                                        android:text="평균 가격\n17,000원"
+                                        android:gravity="center"
+                                        android:textSize="24dp"
+                                        android:textColor="@color/black"/>
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        app:srcCompat="@drawable/myview_line" />
+
+                                    <TextView
+                                        android:id="@+id/info_address"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="80dp"
+                                        android:text="주소\n광주 북구 용봉동 888"
+                                        android:gravity="center"
+                                        android:textSize="24dp"
+                                        android:textColor="@color/black"/>
+
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        app:srcCompat="@drawable/myview_line" />
+
+                                    <TextView
+                                        android:id="@+id/info_Call"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="80dp"
+                                        android:text="전화번호\n062- 888"
+                                        android:gravity="center"
+                                        android:textSize="24dp"
+                                        android:textColor="@color/black"/>
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="500dp"
+                                        android:gravity="center"
+                                        android:text="사진 추가 예정"
+                                        android:textColor="@color/black"
+                                        android:textSize="24dp" />
+
+                                </LinearLayout>
+                            </ScrollView>
+                        </LinearLayout>
+                </com.sothree.slidinguppanel.SlidingUpPanelLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -298,3 +440,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+</layout>

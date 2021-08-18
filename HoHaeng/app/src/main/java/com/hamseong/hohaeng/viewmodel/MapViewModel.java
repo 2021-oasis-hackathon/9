@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 
@@ -11,6 +12,8 @@ import com.hamseong.hohaeng.APIKey;
 import com.hamseong.hohaeng.R;
 import com.hamseong.hohaeng.model.MapData;
 import com.hamseong.hohaeng.model.MapDataQuery;
+import com.hamseong.hohaeng.model.Placeinfo;
+import com.hamseong.hohaeng.view.TMapViewView;
 
 import net.daum.mf.map.api.MapPOIItem;
 import net.daum.mf.map.api.MapPoint;
@@ -32,6 +35,10 @@ public class MapViewModel {
     public MutableLiveData<ArrayList<MapPOIItem>> mTMapmarker = new MutableLiveData<>();
     public MutableLiveData<Boolean> isDraw = new MutableLiveData<>();
     public ArrayList<MapPoint> alTMapPoint = new ArrayList<MapPoint>();
+    public MutableLiveData<Integer> TagOn = new MutableLiveData<>();
+    public MutableLiveData<Integer> subTagOn = new MutableLiveData<>();
+    public ArrayList<Placeinfo> markerLocalData = new ArrayList<>();
+    //슬라이딩 뷰 정보에 대한 객체 생성 라이브 데이터로 인포가 켜졌다는 창 나오면 객체에서 정보 얻어와서 뷰 변경
     int Count=0;
     int NowCount=0;
 
@@ -98,10 +105,10 @@ public class MapViewModel {
 
 
     public void onBalloonClick(MapView mapView,MapPOIItem poiItem){
-        System.out.println("");
+
     }
 
-    public void onTagbuttonClick(){
+    public void onTagbuttonClick(String query, String cate){
         Count = 0;
         NowCount = 0;
         RetrofitClient retrofitClient = new RetrofitClient();
@@ -109,14 +116,17 @@ public class MapViewModel {
 
         for (MapPoint point : alTMapPoint) {
 
-            Call<MapData> call = retrofitClient.apiService.getPost(APIKey.KaKaoApi, "카페", "CE7", Double.toString(point.getMapPointGeoCoord().longitude),Double.toString(point.getMapPointGeoCoord().latitude), 4000, 1);
+            Call<MapData> call = retrofitClient.apiService.getPost(APIKey.KaKaoApi, query, cate, Double.toString(point.getMapPointGeoCoord().longitude),Double.toString(point.getMapPointGeoCoord().latitude), 4000, 1);
 
             call.enqueue(new Callback<MapData>() {
                 @Override
                 public void onResponse(Call<MapData> call, Response<MapData> response) {
                     if (response.isSuccessful()) {
-                        if(tMapMarkerItems.size()==0) {
-                            Log.i("url",response.body().documents.get(0).getUrl());
+                        if(response.body().documents.size()==0){
+
+                        }
+                        else if(tMapMarkerItems.size()==0&&response.body().documents.size()!=0) {
+                            markerLocalData.add(response.body().documents.get(0));
                             MapPOIItem marker = new MapPOIItem();
                             marker.setItemName("10000");
                             marker.setTag(Count);
@@ -127,9 +137,9 @@ public class MapViewModel {
                             marker.setCustomImageAutoscale(false);
                             tMapMarkerItems.add(marker);
                             NowCount++;
-                        }else if((Math.abs(Double.parseDouble(response.body().documents.get(0).getY())-tMapMarkerItems.get(NowCount-1).getMapPoint().getMapPointGeoCoord().latitude)>0.0001
-                                || Math.abs(Double.parseDouble(response.body().documents.get(0).getX())-tMapMarkerItems.get(NowCount-1).getMapPoint().getMapPointGeoCoord().longitude)>0.0001)){
-
+                        }else if(((Math.abs(Double.parseDouble(response.body().documents.get(0).getY())-tMapMarkerItems.get(NowCount-1).getMapPoint().getMapPointGeoCoord().latitude)>0.0001
+                                || Math.abs(Double.parseDouble(response.body().documents.get(0).getX())-tMapMarkerItems.get(NowCount-1).getMapPoint().getMapPointGeoCoord().longitude)>0.0001))){
+                            markerLocalData.add(response.body().documents.get(0));
                             Log.i("test",Double.toString(Math.abs(Double.parseDouble(response.body().documents.get(0).getY())-tMapMarkerItems.get(NowCount-1).getMapPoint().getMapPointGeoCoord().latitude)));
                             MapPOIItem marker = new MapPOIItem();
                             marker.setItemName(Integer.toString(((Count+1)*10000)));
@@ -157,6 +167,9 @@ public class MapViewModel {
         }
     }
 
+    public void onSubTagButtonClick(){
+
+    }
 
 }
 

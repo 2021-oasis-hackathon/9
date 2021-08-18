@@ -19,6 +19,14 @@ public interface MapDataQuery {
                           @Query("size") int size
                           );
 
+    @GET("v2/local/search/keyword.json")    // Keyword.json의 정보를 받아옴
+    Call<MapData> getInfo(@Header("Authorization") String apikey,
+                          @Query("query") String query,
+                          @Query("x") String x,
+                          @Query("y") String y,
+                          @Query("size") int size
+    );
+
 }
 
 

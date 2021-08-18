@@ -34,6 +34,7 @@ public class AllCourseInfo implements Serializable {// 룸 디비
     private String Location;
 
     private int people;
+  
     public AllCourseInfo(){
 
     }
@@ -41,15 +42,6 @@ public class AllCourseInfo implements Serializable {// 룸 디비
         this.name = name;
         X = x;
         Y = y;
-        this.endYear = endYear;
-        this.endMonth = endMonth;
-        this.endDay = endDay;
-        this.startYear = startYear;
-        this.startMonth = startMonth;
-        this.startDay = startDay;
-        Location = location;
-        this.people = people;
-    }
 
     public int getCount() {
         return count;
@@ -145,5 +137,4 @@ public class AllCourseInfo implements Serializable {// 룸 디비
 
     public void setPeople(int people) {
         this.people = people;
-    }
 }

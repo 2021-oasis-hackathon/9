@@ -58,6 +58,7 @@ public class Cal extends AppCompatActivity {
                 calendar =  binding.calendarView.getSelectedDates().get(binding.calendarView.getSelectedDates().size()-1);
                 intent.putExtra("end",Integer.toString(calendar.MONTH+1)+"."+Integer.toString(calendar.DAY_OF_MONTH));
                 intent.putExtra("people",childnum.getValue()+peoplenum.getValue());
+
                 startActivity(intent);
             }
         });
