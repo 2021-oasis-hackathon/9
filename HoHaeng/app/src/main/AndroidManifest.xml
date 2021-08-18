@@ -22,7 +22,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HoHaeng"
         android:usesCleartextTraffic="true">
-<!--        <activity android:name=".view.CourseResister"></activity>-->
+
         <activity android:name=".view.MpSpecialties" />
         <activity android:name=".view.GjSpecialties" />
         <activity android:name=".view.Cal" />

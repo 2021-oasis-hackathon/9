@@ -12,12 +12,15 @@ import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.hamseong.hohaeng.APIKey;
 import com.hamseong.hohaeng.R;
 import com.hamseong.hohaeng.RecommendInfo;
 import com.hamseong.hohaeng.databinding.ActivityAlreadyMapViewBinding;
 import com.hamseong.hohaeng.dummy;
+import com.hamseong.hohaeng.model.AllOtherCourseInfo;
+import com.hamseong.hohaeng.model.AllPlaceInfo;
 import com.hamseong.hohaeng.model.MapData;
 import com.hamseong.hohaeng.model.MapDataQuery;
 import com.hamseong.hohaeng.model.Placeinfo;
@@ -37,8 +40,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static net.daum.mf.map.api.MapPoint.mapPointWithGeoCoord;
 
-public class AlreadyMapView extends AppCompatActivity  {
-/* implements MapView.POIItemEventListener
+public class AlreadyMapView extends AppCompatActivity implements MapView.POIItemEventListener {
+
 
     ActivityAlreadyMapViewBinding binding;
     AlreadyMapViewModel alreadyMapViewModel = new AlreadyMapViewModel();
@@ -66,7 +69,8 @@ public class AlreadyMapView extends AppCompatActivity  {
         Intent infomation = getIntent();
         if (infomation.getExtras().getString("who").equals("other")) {//남이 짠것
             isType = true;
-            //쿼리
+                AllOtherCourseInfo allOtherCourseInfo = (AllOtherCourseInfo)infomation.getSerializableExtra("Course");
+
 
             binding.alImageBNow.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -74,10 +78,9 @@ public class AlreadyMapView extends AppCompatActivity  {
                     binding.alImageBNow.setVisibility(View.GONE);
                     binding.layoutContextInfo.setVisibility(View.VISIBLE);
 
-                    binding.courseinfoName.setText();
-                    binding.courseinfoUser.setText();
-                    binding.courseinfoContext.setText();
-                    binding.courseinfoStar.setText();
+                    binding.courseinfoName.setText(allOtherCourseInfo.getName());
+                    binding.courseinfoContext.setText(allOtherCourseInfo.getContent());
+                    binding.courseinfoStar.setText(allOtherCourseInfo.getStar());
 
                 }
             });
@@ -85,7 +88,7 @@ public class AlreadyMapView extends AppCompatActivity  {
             binding.courseinfoPlus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //쿼리
+                    //쿼리 other에 있는 맵리스트 들로 코스 생성해서 쿼리 보냄
                 }
             });
 
@@ -94,27 +97,28 @@ public class AlreadyMapView extends AppCompatActivity  {
             isType = false;//추천으로 짠것
             recommendInfo = (RecommendInfo) infomation.getSerializableExtra("setting");
 
-            alreadyMapViewModel.mapPointList.observe(this, new Observer<ArrayList<dummy>>() {
+            alreadyMapViewModel.mapPointList.observe(this, new Observer<ArrayList<AllPlaceInfo>>() {
                 int NowCount = 0;
 
                 @Override
-                public void onChanged(ArrayList<dummy> dummys) {
+                public void onChanged(ArrayList<AllPlaceInfo> AllPlaceInfos) {
 
                     RetrofitClient2 retrofitClient = new RetrofitClient2();
 
-                    for (dummy point : dummys) {
+                    for (AllPlaceInfo point : AllPlaceInfos) {
 
-                        Call<MapData> call = retrofitClient.apiService.getInfo(APIKey.KaKaoApi, point.getName(), point.getX, point.getY, 1);
+                        Call<MapData> call = retrofitClient.apiService.getInfo(APIKey.KaKaoApi, point.getName(), point.getX(), point.getY(), 1);
 
                         call.enqueue(new Callback<MapData>() {
                             @Override
                             public void onResponse(Call<MapData> call, Response<MapData> response) {
                                 if (response.isSuccessful()) {
                                     if (response.body().documents.size() == 0) {
-                                        alreadyMapViewModel.placeinfos.add(response.body().documents.get(0));
-                                        Log.i("test", Double.toString(Math.abs(Double.parseDouble(response.body().documents.get(0).getY()) - tMapMarkerItems.get(NowCount - 1).getMapPoint().getMapPointGeoCoord().latitude)));
+                                        Placeinfo placeinfo = response.body().documents.get(0);
+                                        AllPlaceInfo allPlaceInfo = new AllPlaceInfo(placeinfo.getPlace_name(),placeinfo.getCategory_name(),placeinfo.getX(),placeinfo.getY(),placeinfo.getUrl(),null,null,placeinfo.getRoad_address(),placeinfo.getPhone(),null);
+                                        alreadyMapViewModel.AllPlaceInfo.add(allPlaceInfo);
                                         MapPOIItem marker = new MapPOIItem();
-                                        marker.setItemName(point.getVlaue());
+                                        marker.setItemName(point.getValue());
                                         marker.setTag(NowCount);
                                         marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커타입을 커스텀 마커로 지정.
                                         marker.setCustomImageResourceId(R.drawable.marker_sel); // 마커 이미지.
@@ -149,7 +153,57 @@ public class AlreadyMapView extends AppCompatActivity  {
                 }
             });
 
+            View db_1 = (View) findViewById(R.id.bb_1) ;
+            db_1.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(
+                            getApplicationContext(), // 현재 화면의 제어권자
+                            HomeActivity.class); // 다음 넘어갈 클래스 지정
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent); // 다음 화면으로 넘어간다
+                }
+            });
+            View db_2 = (View) findViewById(R.id.bb_2) ;
+            db_2.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(
+                            getApplicationContext(), // 현재 화면의 제어권자
+                            LikeView.class); // 다음 넘어갈 클래스 지정
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent); // 다음 화면으로 넘어간다
+                }
+            });
+            View db_3 = (View) findViewById(R.id.bb_3) ;
+            db_3.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(
+                            getApplicationContext(), // 현재 화면의 제어권자
+                            TMapViewView.class); // 다음 넘어갈 클래스 지정
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent); // 다음 화면으로 넘어간다
 
+
+                }
+            });
+            View db_4 = (View) findViewById(R.id.bb_4) ;
+            db_4.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(
+                            getApplicationContext(), // 현재 화면의 제어권자
+                            MyView.class); // 다음 넘어갈 클래스 지정
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent); // 다음 화면으로 넘어간다
+
+                }
+            });
         }
     }
 
@@ -189,19 +243,23 @@ public class AlreadyMapView extends AppCompatActivity  {
             int i = (Integer)mapPOIItem.getTag();
             findViewById(R.id.layout_info).setVisibility(View.VISIBLE);
             findViewById(R.id.al_imageB_now).setVisibility(View.GONE);
-            Placeinfo placeinfo = alreadyMapViewModel.placeinfos.get(i);
-            binding.infoAddress.setText("주소\n"+placeinfo.getRoad_address());
-            binding.infoHash.setText();//
-            binding.infoName.setText(placeinfo.getPlace_name());
-            binding.infoValue.setText();//
+            AllPlaceInfo allPlaceInfo = alreadyMapViewModel.AllPlaceInfo.get(i);
+            binding.infoAddress.setText("주소\n"+allPlaceInfo.getRoad_Address());
+            binding.infoHash.setText("태그 \n");
+            for(String string :allPlaceInfo.getTag()){
+                binding.infoHash.setText(binding.infoHash.getText()+" #"+string);//
+            }
+
+            binding.infoName.setText(allPlaceInfo.getName());
+            binding.infoValue.setText(allPlaceInfo.getValue());//
             //쿼리 좋아요 여부
             binding.infoLike.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
+                    //좋아요에 추가
                 }
             });
-            binding.infoCall.setText("전화번호\n"+placeinfo.getPhone());
+            binding.infoCall.setText("전화번호\n"+allPlaceInfo.getPhone());
         }
     }
 
@@ -221,5 +279,4 @@ class RetrofitClient2 {//레트로핏 객체 생성
 
     public MapDataQuery apiService = retrofit.create(MapDataQuery.class);
 
- */
 }
