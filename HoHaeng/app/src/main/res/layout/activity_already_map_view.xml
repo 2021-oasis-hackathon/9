@@ -29,8 +29,6 @@
                 android:orientation="vertical">
 
 
-                <LinearLayout
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_mapview"
 
@@ -50,9 +48,7 @@
 
                     </RelativeLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </LinearLayout>
-
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="300dp"

@@ -63,14 +63,13 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
     private MapViewModel mMapviewModel = new MapViewModel();//뷰모델
     private String API_Key = APIKey.KaKaoApi;//api key
     public int id = View.generateViewId();
-    private CourseRepository courseRepository;
     public static LayoutInflater inflater;//이 액티비티의 인플래터
     MapView mapView;
 
-    AllCourseInfo savedb = new AllCourseInfo();
+    //AllCourseInfo savedb = new AllCourseInfo();
     ArrayList<String> savedbX = new ArrayList<>();
     ArrayList<String> savedbY = new ArrayList<>();
-    ArrayList<String> savedbName = new ArrayList<>()
+    ArrayList<String> savedbName = new ArrayList<>();
     ActivityMapViewBinding binding;
 
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
@@ -127,20 +126,20 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
 
             mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(YeosuUrbanInfo.placeY, YeosuUrbanInfo.placeX),7,true);
         }
-        savedb.setLocation(infomation.getExtras().getString("urban"));//도시저장
+        //savedb.setLocation(infomation.getExtras().getString("urban"));//도시저장
         String str = infomation.getExtras().getString("start");
         String[] array = str.split(".");
-        savedb.setStartYear(Integer.parseInt(array[0]));
-        savedb.setStartYear(Integer.parseInt(array[1]));
-        savedb.setStartYear(Integer.parseInt(array[2]));
+       // savedb.setStartYear(Integer.parseInt(array[0]));
+        // savedb.setStartYear(Integer.parseInt(array[1]));
+       // savedb.setStartYear(Integer.parseInt(array[2]));
 
         String str2 = infomation.getExtras().getString("end");
         String[] array2 = str.split(".");
-        savedb.setEndYear(Integer.parseInt(array[0]));
-        savedb.setEndMonth(Integer.parseInt(array[1]));
-        savedb.setEndDay(Integer.parseInt(array[2]));
+        //savedb.setEndYear(Integer.parseInt(array[0]));
+        //savedb.setEndMonth(Integer.parseInt(array[1]));
+        //savedb.setEndDay(Integer.parseInt(array[2]));
 
-        savedb.setPeople(infomation.getExtras().getInt("people"));
+        //savedb.setPeople(infomation.getExtras().getInt("people"));
 
 
         ImageView imageBDrawline = findViewById(R.id.imageB_drawline);//지도 좌우 버튼 동그랗게

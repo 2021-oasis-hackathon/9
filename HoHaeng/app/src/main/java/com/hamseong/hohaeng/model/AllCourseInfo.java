@@ -8,16 +8,8 @@ import androidx.room.PrimaryKey;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-@Entity
 public class AllCourseInfo implements Serializable {// 룸 디비
-    @PrimaryKey(autoGenerate = true)
-    private int count;
-
-    private String name;
-
-    private String X;
-
-    private String Y;
+    private ArrayList<AllPlaceInfo> placeInfos;
 
     private int endYear;
 
@@ -34,45 +26,25 @@ public class AllCourseInfo implements Serializable {// 룸 디비
     private String Location;
 
     private int people;
-  
-    public AllCourseInfo(){
 
-    }
-   public AllCourseInfo(String name, String x, String y, int endYear, int endMonth, int endDay, int startYear, int startMonth, int startDay, String location, int people) {
-        this.name = name;
-        X = x;
-        Y = y;
-
-    public int getCount() {
-        return count;
-    }
-
-    public void setCount(int count) {
-        this.count = count;
+    public AllCourseInfo(ArrayList<AllPlaceInfo> placeInfos, int endYear, int endMonth, int endDay, int startYear, int startMonth, int startDay, String location, int people) {
+        this.placeInfos = placeInfos;
+        this.endYear = endYear;
+        this.endMonth = endMonth;
+        this.endDay = endDay;
+        this.startYear = startYear;
+        this.startMonth = startMonth;
+        this.startDay = startDay;
+        Location = location;
+        this.people = people;
     }
 
-    public String getName() {
-        return name;
+    public ArrayList<AllPlaceInfo> getPlaceInfos() {
+        return placeInfos;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getX() {
-        return X;
-    }
-
-    public void setX(String x) {
-        X = x;
-    }
-
-    public String getY() {
-        return Y;
-    }
-
-    public void setY(String y) {
-        Y = y;
+    public void setPlaceInfos(ArrayList<AllPlaceInfo> placeInfos) {
+        this.placeInfos = placeInfos;
     }
 
     public int getEndYear() {
@@ -137,4 +109,5 @@ public class AllCourseInfo implements Serializable {// 룸 디비
 
     public void setPeople(int people) {
         this.people = people;
+    }
 }

@@ -60,7 +60,7 @@ public class MyView extends AppCompatActivity {
                     urban.setTextSize(dpbase * 5);
                     urban.setTextColor(Color.BLACK);
                     urban.setGravity(Gravity.CENTER_VERTICAL);
-                    urban.setText(allCourseInfo.getLoaction());
+                    urban.setText(allCourseInfo.getLocation());
 
                     TextView day = new TextView(MyView.this);
                     day.setText(allCourseInfo.getStartYear()+"."+allCourseInfo.getStartMonth()+"."+allCourseInfo.getStartDay()+"~"+
@@ -111,7 +111,7 @@ public class MyView extends AppCompatActivity {
                     urban.setTextSize(dpbase * 5);
                     urban.setTextColor(Color.BLACK);
                     urban.setGravity(Gravity.CENTER_VERTICAL);
-                    urban.setText(allCourseInfo.getLoaction());
+                    urban.setText(allCourseInfo.getLocation());
 
                     TextView day = new TextView(MyView.this);
                     day.setText(allCourseInfo.getStartYear() + "." + allCourseInfo.getStartMonth() + "." + allCourseInfo.getStartDay() + "~" +
@@ -144,10 +144,6 @@ public class MyView extends AppCompatActivity {
                 }
             }
         });
-
-        ArrayList<AllCourseInfo> allCourseInfos = new ArrayList<>();
-        allCourseInfos.add(new AllCourseInfo(null,2021,9,27,2021,8,16,"광주"));
-        myViewModel.Courseinfo.setValue(allCourseInfos);
 
         binding.myviewJNotsel.setOnClickListener(new View.OnClickListener() {
             @Override
