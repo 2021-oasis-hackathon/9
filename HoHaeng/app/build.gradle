@@ -63,4 +63,9 @@ dependencies {
     implementation 'com.sothree.slidinguppanel:library:3.4.0'
 
 
+    // room
+    implementation 'androidx.room:room-runtime:2.3.0'
+    annotationProcessor 'androidx.room:room-compiler:2.3.0'
+
+
 }
