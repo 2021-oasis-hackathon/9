@@ -94,7 +94,9 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         findViewById(R.id.layout_info).setVisibility(View.VISIBLE);
         findViewById(R.id.imageB_now).setVisibility(View.GONE);
         findViewById(R.id.imageB_drawline).setVisibility(View.GONE);
-        mMapviewModel.onBalloonClick(mapView,mapPOIItem);
+        int num = mapPOIItem.getTag();
+        binding.infoName.setText(mMapviewModel.markerLocalData.get(num).getPlace_name());
+        binding.infoAddress.setText(mMapviewModel.markerLocalData.get(num).getRoad_address());
     }
 
     @Override

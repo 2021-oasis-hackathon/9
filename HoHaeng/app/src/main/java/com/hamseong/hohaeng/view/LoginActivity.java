@@ -9,11 +9,15 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.room.Room;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.hamseong.hohaeng.R;
+import com.hamseong.hohaeng.model.AppDatabase;
+import com.hamseong.hohaeng.model.RoomUser;
+import com.hamseong.hohaeng.model.RoomUserRepository;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,6 +25,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private EditText et_id, et_pass1;
     private ImageView btn_login, btn_register;
+    private RoomUserRepository userRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,13 @@ public class LoginActivity extends AppCompatActivity {
 
         btn_login = findViewById(R.id.e_login1);
         btn_register = findViewById(R.id.e_reg);
+
+
+
+
+
+
+
 
         // 회원가입 버튼을 클릭 시 수행
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -60,6 +72,18 @@ public class LoginActivity extends AppCompatActivity {
                             if (success) { // 로그인에 성공한 경우
                                 String id = jsonObject.getString("id");
                                 String pw = jsonObject.getString("pw");
+
+                                //이하 근성
+                                AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"db")
+                                        .fallbackToDestructiveMigration()
+                                        .allowMainThreadQueries()
+                                        .build();
+                                userRepository =db.roomUserRepository();
+
+                                RoomUser roomUser = new RoomUser("",id,pw);
+                                userRepository.insert(roomUser);
+                                //이상 근성
+
 
                                 Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
