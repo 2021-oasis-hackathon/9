@@ -1,16 +1,15 @@
 package com.hamseong.hohaeng.model;
 
-import androidx.lifecycle.MutableLiveData;
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-
-public class AllCourseInfo implements Serializable {// 룸 디비
-    private ArrayList<AllPlaceInfo> placeInfos;
-
+@Entity
+public class RoomCourese {
+    @PrimaryKey(autoGenerate = true)
+    private int id;
+    private String x;
+    private String y;
+    private String name;
     private int endYear;
 
     private int endMonth;
@@ -27,8 +26,13 @@ public class AllCourseInfo implements Serializable {// 룸 디비
 
     private int people;
 
-    public AllCourseInfo(ArrayList<AllPlaceInfo> placeInfos, int endYear, int endMonth, int endDay, int startYear, int startMonth, int startDay, String location, int people) {
-        this.placeInfos = placeInfos;
+    public RoomCourese(){
+
+    }
+    public RoomCourese(String x, String y, String name, int endYear, int endMonth, int endDay, int startYear, int startMonth, int startDay, String location, int people) {
+        this.x = x;
+        this.y = y;
+        this.name = name;
         this.endYear = endYear;
         this.endMonth = endMonth;
         this.endDay = endDay;
@@ -39,12 +43,36 @@ public class AllCourseInfo implements Serializable {// 룸 디비
         this.people = people;
     }
 
-    public ArrayList<AllPlaceInfo> getPlaceInfos() {
-        return placeInfos;
+    public int getId() {
+        return id;
     }
 
-    public void setPlaceInfos(ArrayList<AllPlaceInfo> placeInfos) {
-        this.placeInfos = placeInfos;
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getX() {
+        return x;
+    }
+
+    public void setX(String x) {
+        this.x = x;
+    }
+
+    public String getY() {
+        return y;
+    }
+
+    public void setY(String y) {
+        this.y = y;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getEndYear() {

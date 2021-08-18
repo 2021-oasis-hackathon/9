@@ -6,6 +6,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.room.Room;
 
 import android.Manifest;
 import android.content.Intent;
@@ -31,8 +32,10 @@ import android.widget.TextView;
 import com.hamseong.hohaeng.APIKey;
 import com.hamseong.hohaeng.R;
 
+
 import com.hamseong.hohaeng.YeosuUrbanInfo;
 import com.hamseong.hohaeng.databinding.ActivityMapViewBinding;
+import com.hamseong.hohaeng.model.AllCourseInfo;
 import com.hamseong.hohaeng.model.MapData;
 import com.hamseong.hohaeng.model.MapDataQuery;
 
@@ -60,10 +63,15 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
     private MapViewModel mMapviewModel = new MapViewModel();//뷰모델
     private String API_Key = APIKey.KaKaoApi;//api key
     public int id = View.generateViewId();
-
     public static LayoutInflater inflater;//이 액티비티의 인플래터
     MapView mapView;
+
+    //AllCourseInfo savedb = new AllCourseInfo();
+    ArrayList<String> savedbX = new ArrayList<>();
+    ArrayList<String> savedbY = new ArrayList<>();
+    ArrayList<String> savedbName = new ArrayList<>();
     ActivityMapViewBinding binding;
+
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONES_REQUEST_CODE = 100;
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};//퍼미션
@@ -86,7 +94,9 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
         findViewById(R.id.layout_info).setVisibility(View.VISIBLE);
         findViewById(R.id.imageB_now).setVisibility(View.GONE);
         findViewById(R.id.imageB_drawline).setVisibility(View.GONE);
-        mMapviewModel.onBalloonClick(mapView,mapPOIItem);
+        int num = mapPOIItem.getTag();
+        binding.infoName.setText(mMapviewModel.markerLocalData.get(num).getPlace_name());
+        binding.infoAddress.setText(mMapviewModel.markerLocalData.get(num).getRoad_address());
     }
 
     @Override
@@ -118,6 +128,21 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
 
             mapView.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(YeosuUrbanInfo.placeY, YeosuUrbanInfo.placeX),7,true);
         }
+        //savedb.setLocation(infomation.getExtras().getString("urban"));//도시저장
+        String str = infomation.getExtras().getString("start");
+        String[] array = str.split(".");
+       // savedb.setStartYear(Integer.parseInt(array[0]));
+        // savedb.setStartYear(Integer.parseInt(array[1]));
+       // savedb.setStartYear(Integer.parseInt(array[2]));
+
+        String str2 = infomation.getExtras().getString("end");
+        String[] array2 = str.split(".");
+        //savedb.setEndYear(Integer.parseInt(array[0]));
+        //savedb.setEndMonth(Integer.parseInt(array[1]));
+        //savedb.setEndDay(Integer.parseInt(array[2]));
+
+        //savedb.setPeople(infomation.getExtras().getInt("people"));
+
 
         ImageView imageBDrawline = findViewById(R.id.imageB_drawline);//지도 좌우 버튼 동그랗게
         imageBDrawline.setBackground(new ShapeDrawable(new OvalShape()));

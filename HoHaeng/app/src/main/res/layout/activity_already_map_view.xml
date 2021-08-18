@@ -28,8 +28,10 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_mapview"
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/navi_padding">
@@ -46,9 +48,7 @@
 
                     </RelativeLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </LinearLayout>
-
             <SearchView
                 android:id="@+id/searchView"
                 android:layout_width="300dp"

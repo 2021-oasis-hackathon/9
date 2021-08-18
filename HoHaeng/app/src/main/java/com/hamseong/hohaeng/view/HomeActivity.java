@@ -13,12 +13,19 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.room.Room;
 
 import com.hamseong.hohaeng.R;
 import com.hamseong.hohaeng.databinding.ActivityHomeBinding;
+import com.hamseong.hohaeng.model.AppDatabase;
+import com.hamseong.hohaeng.model.RoomUser;
+import com.hamseong.hohaeng.model.RoomUserRepository;
+
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
     ActivityHomeBinding binding;
+    private RoomUserRepository userRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,6 +33,20 @@ public class HomeActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_home);
         ImageView button1 = (ImageView) findViewById(R.id.b_image1) ;
 
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"db")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+        userRepository =db.roomUserRepository();
+
+        List<RoomUser> user = userRepository.findAll();
+        if(user==null||user.size()==0){
+            binding.homeHi.setText("로그인을 해주십시요.");
+        }else{
+
+            binding.homeHi.setText("안녕하세요,"+user.get(0).getName()+"님 \n 여행 떠날 준비 되셨나요?");
+
+        }
 
         button1.setOnClickListener(new Button.OnClickListener() {
             @Override

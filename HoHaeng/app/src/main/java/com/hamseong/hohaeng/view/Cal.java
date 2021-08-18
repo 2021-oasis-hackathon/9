@@ -54,9 +54,11 @@ public class Cal extends AppCompatActivity {
                 intent.putExtra("people",peoplenum.getValue());
                 intent.putExtra("urban", info.getExtras().getString("urban"));
                 Calendar calendar =  binding.calendarView.getSelectedDates().get(0);
-                intent.putExtra("start",Integer.toString(calendar.MONTH+1)+"월"+Integer.toString(calendar.DAY_OF_MONTH)+"일");
+                intent.putExtra("start",Integer.toString(calendar.YEAR)+"."+Integer.toString(calendar.MONTH+1)+"."+Integer.toString(calendar.DAY_OF_MONTH));
                 calendar =  binding.calendarView.getSelectedDates().get(binding.calendarView.getSelectedDates().size()-1);
-                intent.putExtra("end",Integer.toString(calendar.MONTH+1)+"월"+Integer.toString(calendar.DAY_OF_MONTH)+"일");
+                intent.putExtra("end",Integer.toString(calendar.MONTH+1)+"."+Integer.toString(calendar.DAY_OF_MONTH));
+                intent.putExtra("people",childnum.getValue()+peoplenum.getValue());
+
                 startActivity(intent);
             }
         });

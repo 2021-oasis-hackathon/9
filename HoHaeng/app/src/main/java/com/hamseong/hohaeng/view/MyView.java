@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.Observer;
+import androidx.room.Room;
 
 import android.content.Intent;
 import android.graphics.Color;
@@ -21,16 +22,21 @@ import com.hamseong.hohaeng.R;
 import com.hamseong.hohaeng.databinding.ActivityMyViewBinding;
 import com.hamseong.hohaeng.model.AllCourseInfo;
 import com.hamseong.hohaeng.model.AllPlaceInfo;
+import com.hamseong.hohaeng.model.AppDatabase;
+import com.hamseong.hohaeng.model.RoomUser;
+import com.hamseong.hohaeng.model.RoomUserRepository;
 import com.hamseong.hohaeng.viewmodel.MyViewModel;
 import com.skt.Tmap.TmapAuthentication;
 
 import net.daum.mf.map.api.MapView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MyView extends AppCompatActivity {
     ActivityMyViewBinding binding;
     MyViewModel myViewModel = new MyViewModel();
+    private RoomUserRepository userRepository;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,10 +46,43 @@ public class MyView extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,//전체화면
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+
+
+
+
+        AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"db")
+                .fallbackToDestructiveMigration()
+                .allowMainThreadQueries()
+                .build();
+        userRepository =db.roomUserRepository();
+
+        List<RoomUser> user = userRepository.findAll();
+        if(user==null||user.size()==0){
+            View myview_photo = (View) findViewById(R.id.myview_photo) ;
+            myview_photo.setOnClickListener(new Button.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(
+                            getApplicationContext(), // 현재 화면의 제어권자
+                            LoginActivity.class); // 다음 넘어갈 클래스 지정
+                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent); // 다음 화면으로 넘어간다
+
+                }
+            });
+        }else{
+
+            binding.myviewOntypo.setText(user.get(0).getName().substring(0,1));
+            binding.myviewName.setText(user.get(0).getName());
+
+        }
+
+
+
         myViewModel.Courseinfo.observe(this, new Observer<ArrayList<AllCourseInfo>>() {
             int dpbase = (int) getResources().getDimension(R.dimen.base);
             int Count =0;
-
             @Override
 
             public void onChanged(ArrayList<AllCourseInfo> allCourseInfos) {
@@ -60,7 +99,7 @@ public class MyView extends AppCompatActivity {
                     urban.setTextSize(dpbase * 5);
                     urban.setTextColor(Color.BLACK);
                     urban.setGravity(Gravity.CENTER_VERTICAL);
-                    urban.setText(allCourseInfo.getLoaction());
+                    urban.setText(allCourseInfo.getLocation());
 
                     TextView day = new TextView(MyView.this);
                     day.setText(allCourseInfo.getStartYear()+"."+allCourseInfo.getStartMonth()+"."+allCourseInfo.getStartDay()+"~"+
@@ -111,7 +150,7 @@ public class MyView extends AppCompatActivity {
                     urban.setTextSize(dpbase * 5);
                     urban.setTextColor(Color.BLACK);
                     urban.setGravity(Gravity.CENTER_VERTICAL);
-                    urban.setText(allCourseInfo.getLoaction());
+                    urban.setText(allCourseInfo.getLocation());
 
                     TextView day = new TextView(MyView.this);
                     day.setText(allCourseInfo.getStartYear() + "." + allCourseInfo.getStartMonth() + "." + allCourseInfo.getStartDay() + "~" +
@@ -144,10 +183,6 @@ public class MyView extends AppCompatActivity {
                 }
             }
         });
-
-        ArrayList<AllCourseInfo> allCourseInfos = new ArrayList<>();
-        allCourseInfos.add(new AllCourseInfo(null,2021,9,27,2021,8,16,"광주"));
-        myViewModel.Courseinfo.setValue(allCourseInfos);
 
         binding.myviewJNotsel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -220,19 +255,7 @@ public class MyView extends AppCompatActivity {
 
                 }
             });
-            View myview_photo = (View) findViewById(R.id.myview_photo) ;
-            myview_photo.setOnClickListener(new Button.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(
-                            getApplicationContext(), // 현재 화면의 제어권자
-                            LoginActivity.class); // 다음 넘어갈 클래스 지정
-                    intent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent); // 다음 화면으로 넘어간다
 
-                }
-            });
         }
 
     }
