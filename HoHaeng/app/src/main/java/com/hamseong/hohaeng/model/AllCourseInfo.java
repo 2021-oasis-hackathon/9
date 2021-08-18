@@ -1,36 +1,78 @@
 package com.hamseong.hohaeng.model;
 
+import androidx.lifecycle.MutableLiveData;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class AllCourseInfo implements Serializable {
-    private ArrayList<AllPlaceInfo> allPlaceInfos;
+@Entity
+public class AllCourseInfo implements Serializable {// 룸 디비
+    @PrimaryKey(autoGenerate = true)
+    private int count;
+
+    private String name;
+
+    private String X;
+
+    private String Y;
+
     private int endYear;
+
     private int endMonth;
+
     private int endDay;
+
     private int startYear;
+
     private int startMonth;
+
     private int startDay;
-    private String Loaction;
 
-    public AllCourseInfo(ArrayList<AllPlaceInfo> allPlaceInfos, int endYear, int endMonth, int endDay, int startYear, int startMonth, int startDay, String loaction) {
-        this.allPlaceInfos = allPlaceInfos;
-        this.endYear = endYear;
-        this.endMonth = endMonth;
-        this.endDay = endDay;
-        this.startYear = startYear;
-        this.startMonth = startMonth;
-        this.startDay = startDay;
-        Loaction = loaction;
+    private String Location;
+
+    private int people;
+  
+    public AllCourseInfo(){
+
+    }
+   public AllCourseInfo(String name, String x, String y, int endYear, int endMonth, int endDay, int startYear, int startMonth, int startDay, String location, int people) {
+        this.name = name;
+        X = x;
+        Y = y;
+
+    public int getCount() {
+        return count;
     }
 
-
-    public ArrayList<AllPlaceInfo> getAllPlaceInfos() {
-        return allPlaceInfos;
+    public void setCount(int count) {
+        this.count = count;
     }
 
-    public void setAllPlaceInfos(ArrayList<AllPlaceInfo> allPlaceInfos) {
-        this.allPlaceInfos = allPlaceInfos;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getX() {
+        return X;
+    }
+
+    public void setX(String x) {
+        X = x;
+    }
+
+    public String getY() {
+        return Y;
+    }
+
+    public void setY(String y) {
+        Y = y;
     }
 
     public int getEndYear() {
@@ -81,11 +123,18 @@ public class AllCourseInfo implements Serializable {
         this.startDay = startDay;
     }
 
-    public String getLoaction() {
-        return Loaction;
+    public String getLocation() {
+        return Location;
     }
 
-    public void setLoaction(String loaction) {
-        Loaction = loaction;
+    public void setLocation(String location) {
+        Location = location;
     }
+
+    public int getPeople() {
+        return people;
+    }
+
+    public void setPeople(int people) {
+        this.people = people;
 }

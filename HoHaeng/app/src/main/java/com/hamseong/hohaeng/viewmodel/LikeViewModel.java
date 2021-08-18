@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class LikeViewModel {
     public MutableLiveData<ArrayList<AllPlaceInfo>> likeInfolist = new MutableLiveData<>();
     public MutableLiveData<ArrayList<Pair<String,String>>> chatlist =new MutableLiveData<>();
-    public MutableLiveData<ArrayList<AllUser>> userlist = new MutableLiveData<>()
+    public MutableLiveData<ArrayList<AllUser>> userlist = new MutableLiveData<>();
 
 
     public void viewLoading(){

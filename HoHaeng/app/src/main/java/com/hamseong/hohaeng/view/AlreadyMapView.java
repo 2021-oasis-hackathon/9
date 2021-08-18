@@ -16,9 +16,10 @@ import android.widget.Button;
 
 import com.hamseong.hohaeng.APIKey;
 import com.hamseong.hohaeng.R;
+
 import com.hamseong.hohaeng.RecommendInfo;
 import com.hamseong.hohaeng.databinding.ActivityAlreadyMapViewBinding;
-import com.hamseong.hohaeng.dummy;
+
 import com.hamseong.hohaeng.model.AllOtherCourseInfo;
 import com.hamseong.hohaeng.model.AllPlaceInfo;
 import com.hamseong.hohaeng.model.MapData;

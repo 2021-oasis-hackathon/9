@@ -28,8 +28,12 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+
+                <LinearLayout
+
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/constraint_mapview"
+
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="@dimen/navi_padding">
