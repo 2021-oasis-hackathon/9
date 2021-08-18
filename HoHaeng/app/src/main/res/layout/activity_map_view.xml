@@ -289,7 +289,7 @@
                     android:layout_height="match_parent"
                     android:gravity="bottom"
                     app:umanoDragView="@id/sliding_map_linear"
-                    app:umanoPanelHeight="70dp"
+                    app:umanoPanelHeight="90dp"
                     app:umanoOverlay="false"
                     app:umanoParallaxOffset="200dp"
                     android:id="@+id/sliding_drawer">
