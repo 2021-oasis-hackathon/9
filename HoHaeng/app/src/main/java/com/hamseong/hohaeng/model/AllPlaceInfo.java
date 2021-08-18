@@ -9,10 +9,32 @@ public class AllPlaceInfo implements Serializable {
     private String X;
     private String Y;
     private String Url;
-    private String Start;
+    private String Star;
+    private String Value;
     private String Road_Address;
     private String phone;
     private ArrayList<String> tag;
+
+    public AllPlaceInfo(String name, String category, String x, String y, String url, String star, String value, String road_Address, String phone, ArrayList<String> tag) {
+        Name = name;
+        Category = category;
+        X = x;
+        Y = y;
+        Url = url;
+        Star = star;
+        Value = value;
+        Road_Address = road_Address;
+        this.phone = phone;
+        this.tag = tag;
+    }
+
+    public String getValue() {
+        return Value;
+    }
+
+    public void setValue(String value) {
+        Value = value;
+    }
 
     public String getName() {
         return Name;
@@ -54,12 +76,12 @@ public class AllPlaceInfo implements Serializable {
         Url = url;
     }
 
-    public String getStart() {
-        return Start;
+    public String getStar() {
+        return Star;
     }
 
-    public void setStart(String start) {
-        Start = start;
+    public void setStar(String star) {
+        Star = star;
     }
 
     public String getRoad_Address() {
