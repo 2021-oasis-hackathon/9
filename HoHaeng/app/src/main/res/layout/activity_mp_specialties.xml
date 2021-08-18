@@ -47,6 +47,7 @@
 
 
                         <ImageView
+                            android:id="@+id/jjim"
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_marginLeft="280dp"

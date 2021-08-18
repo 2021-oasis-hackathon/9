@@ -72,6 +72,10 @@ public class LoginActivity extends AppCompatActivity {
                             if (success) { // 로그인에 성공한 경우
                                 String id = jsonObject.getString("id");
                                 String pw = jsonObject.getString("pw");
+                                String name=jsonObject.getString("name");
+
+
+                                Toast.makeText(getApplicationContext(),name +"님 로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
 
                                 //이하 근성
                                 AppDatabase db = Room.databaseBuilder(getApplicationContext(),AppDatabase.class,"db")
@@ -80,12 +84,13 @@ public class LoginActivity extends AppCompatActivity {
                                         .build();
                                 userRepository =db.roomUserRepository();
 
-                                RoomUser roomUser = new RoomUser("",id,pw);
+                                RoomUser roomUser = new RoomUser(name,id,pw);
                                 userRepository.insert(roomUser);
                                 //이상 근성
 
 
-                                Toast.makeText(getApplicationContext(),"로그인에 성공하였습니다.",Toast.LENGTH_SHORT).show();
+                                
+
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                                 intent.putExtra("id", id);
                                 intent.putExtra("pw", pw);

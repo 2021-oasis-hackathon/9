@@ -3,6 +3,7 @@ package com.hamseong.hohaeng.view;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -68,5 +69,95 @@ public class GjSpecialties extends AppCompatActivity {
 
             }
         });
+        View gj_image1 = (View) findViewById(R.id.gj_image1) ;
+        gj_image1.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "무등산수박";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+            }
+        });
+        View gj_image2 = (View) findViewById(R.id.gj_image2) ;
+        gj_image2.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "상추튀김";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+            }
+        });
+        View gj_image3 = (View) findViewById(R.id.gj_image3) ;
+        gj_image3.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "유동 오리탕";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+            }
+        });
+        View gj_image4 = (View) findViewById(R.id.gj_image4) ;
+        gj_image4.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "송정 떡갈비";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+            }
+        });
+        View gj_image5 = (View) findViewById(R.id.gj_image5) ;
+        gj_image5.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "광주 비엔날레";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+            }
+        });
+        View gj_image6 = (View) findViewById(R.id.gj_image6) ;
+        gj_image6.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "광주 세계김치축제";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+            }
+        });
+        View gj_image7 = (View) findViewById(R.id.gj_image7) ;
+        gj_image7.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "추억의 충장축제";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+            }
+        });
+        View gj_image8 = (View) findViewById(R.id.gj_image8) ;
+        gj_image8.setOnClickListener(new Button.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String srchString = "광주 청년축제";
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://search.naver.com/search.naver?ie=UTF-8&query="+srchString +"&sm=chr_hty"));
+
+                startActivity(browserIntent);
+
+
+            }
+        });
+
     }
 }
