@@ -27,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import com.hamseong.hohaeng.APIKey;
@@ -115,13 +116,26 @@ public class MapViewView extends AppCompatActivity implements MapView.POIItemEve
 
         inflater = getLayoutInflater();
 
-
         mapView = new MapView(this);//맴뷰 객체생성
         RelativeLayout mapViewContainer = (RelativeLayout) findViewById(R.id.linearLayoutTmap);
         mapViewContainer.addView(mapView);//뷰에 추가
         mapView.setCalloutBalloonAdapter(new CustomCalloutBalloonAdapter());
         mapView.setPOIItemEventListener(this);
         mapView.setCustomCurrentLocationMarkerTrackingImage(R.drawable.cr_hohaen,new MapPOIItem.ImageOffset(18,18));//호행이 트래킹마커
+
+        binding.searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                mMapviewModel.onBalloonClick(query,mapView);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+
 
         Intent infomation = getIntent();
         if(infomation.getExtras().getString("urban").equals("여수")){

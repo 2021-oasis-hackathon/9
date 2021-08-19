@@ -104,8 +104,26 @@ public class MapViewModel {
     }
 
 
-    public void onBalloonClick(MapView mapView,MapPOIItem poiItem){
+    public void onBalloonClick(String query,MapView tmap){
+        RetrofitClient retrofitClient = new RetrofitClient();
+        ArrayList<MapPOIItem > tMapMarkerItems = new ArrayList<>();
 
+            Call<MapData> call = retrofitClient.apiService.set(APIKey.KaKaoApi,query);
+
+            call.enqueue(new Callback<MapData>() {
+                @Override
+                public void onResponse(Call<MapData> call, Response<MapData> response) {
+                    if (response.isSuccessful()) {
+                        tmap.setMapCenterPointAndZoomLevel(MapPoint.mapPointWithGeoCoord(Double.parseDouble(response.body().documents.get(0).getY()),Double.parseDouble(response.body().documents.get(0).getX())), 10, true);
+                    }
+                }
+
+
+                @Override
+                public void onFailure(Call<MapData> call, Throwable t) {
+                    System.out.println("");
+                }
+            });
     }
 
     public void onTagbuttonClick(String query, String cate){
@@ -142,7 +160,7 @@ public class MapViewModel {
                             markerLocalData.add(response.body().documents.get(0));
                             Log.i("test",Double.toString(Math.abs(Double.parseDouble(response.body().documents.get(0).getY())-tMapMarkerItems.get(NowCount-1).getMapPoint().getMapPointGeoCoord().latitude)));
                             MapPOIItem marker = new MapPOIItem();
-                            marker.setItemName(Integer.toString(((Count+1)*10000)));
+                            marker.setItemName("10,000");
                             marker.setTag(Count);
                             marker.setMarkerType(MapPOIItem.MarkerType.CustomImage); // 마커타입을 커스텀 마커로 지정.
                             marker.setCustomImageResourceId(R.drawable.marker_sel); // 마커 이미지.
